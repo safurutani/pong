@@ -1,6 +1,7 @@
 import turtle
 import winsound
 import random
+from time import sleep
 
 #initial window setup
 wn = turtle.Screen()
@@ -15,7 +16,7 @@ score2 = 0
 
 #L Paddle
 l_paddle = turtle.Turtle()
-l_paddle.speed(10)   #defaults to max speed
+l_paddle.speed(0)   #defaults to max speed
 l_paddle.shape("square")
 l_paddle.shapesize(stretch_wid=5, stretch_len=1)
 l_paddle.color("white")
@@ -71,8 +72,8 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx = 0.25
-ball.dy = 0.25
+ball.dx = 2
+ball.dy = 2
 
 #pen
 pen = turtle.Turtle()
@@ -85,6 +86,7 @@ pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "bold
 
 #main game loop
 while True:
+    sleep(0.01)
     wn.update()
 
     #indicates starting direction of ball randomly
