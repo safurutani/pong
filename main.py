@@ -25,6 +25,14 @@ r_paddle.color("white")
 r_paddle.penup()
 r_paddle.goto(350,0)
 
+#ball
+ball = turtle.Turtle()
+ball.speed(0)   #defaults to max speed
+ball.shape("square")
+ball.color("white")
+ball.penup()
+ball.goto(0,0)
+
 #main game loop
 while True:
     wn.update()
