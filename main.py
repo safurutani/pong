@@ -25,14 +25,6 @@ r_paddle.color("white")
 r_paddle.penup()
 r_paddle.goto(350,0)
 
-#ball
-ball = turtle.Turtle()
-ball.speed(0)   #defaults to max speed
-ball.shape("square")
-ball.color("white")
-ball.penup()
-ball.goto(0,0)
-
 #User moves L paddle up/down
 def l_paddle_up():
     y = l_paddle.ycor()
@@ -41,7 +33,7 @@ def l_paddle_up():
 
 def l_paddle_down():
     y = l_paddle.ycor()
-    y -= 20             #moves up by 20 pixels
+    y -= 20             #moves down by 20 pixels
     l_paddle.sety(y)    #stores new y coordinate
 
 #User moves R paddle up/down
@@ -52,7 +44,7 @@ def r_paddle_up():
 
 def r_paddle_down():
     y = r_paddle.ycor()
-    y -= 20             #moves up by 20 pixels
+    y -= 20             #moves down by 20 pixels
     r_paddle.sety(y)    #stores new y coordinate
 
 #keybindings
@@ -62,6 +54,35 @@ wn.onkeypress(l_paddle_down, "s")
 wn.onkeypress(r_paddle_up, "Up")
 wn.onkeypress(r_paddle_down, "Down")
 
+#ball
+ball = turtle.Turtle()
+ball.speed(0)   #defaults to max speed
+ball.shape("square")
+ball.color("white")
+ball.penup()
+ball.goto(0,0)
+ball.dx = 0.25
+ball.dy = 0.25
+
+
 #main game loop
 while True:
     wn.update()
+
+    #moves ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    #checks if ball hits border
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+    if ball.xcor() > 390:
+        ball.goto(0,0)
+        ball.dx *= -1
+    if ball.xcor() < -390:
+        ball.goto(0,0)
+        ball.dx *= -1
