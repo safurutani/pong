@@ -14,7 +14,7 @@ score2 = 0
 
 #L Paddle
 l_paddle = turtle.Turtle()
-l_paddle.speed(0)   #defaults to max speed
+l_paddle.speed(10)   #defaults to max speed
 l_paddle.shape("square")
 l_paddle.shapesize(stretch_wid=5, stretch_len=1)
 l_paddle.color("white")
@@ -33,24 +33,28 @@ r_paddle.goto(350,0)
 #User moves L paddle up/down
 def l_paddle_up():
     y = l_paddle.ycor()
-    y += 20             #moves up by 20 pixels
-    l_paddle.sety(y)    #stores new y coordinate
+    if y < 245:
+        y += 20             #moves up by 20 pixels
+        l_paddle.sety(y)    #stores new y coordinate
 
 def l_paddle_down():
     y = l_paddle.ycor()
-    y -= 20             #moves down by 20 pixels
-    l_paddle.sety(y)    #stores new y coordinate
+    if y > -230:
+        y -= 20             #moves down by 20 pixels
+        l_paddle.sety(y)    #stores new y coordinate
 
 #User moves R paddle up/down
 def r_paddle_up():
     y = r_paddle.ycor()
-    y += 20             #moves up by 20 pixels
-    r_paddle.sety(y)    #stores new y coordinate
+    if y < 245:
+        y += 20             #moves up by 20 pixels
+        r_paddle.sety(y)    #stores new y coordinate
 
 def r_paddle_down():
     y = r_paddle.ycor()
-    y -= 20             #moves down by 20 pixels
-    r_paddle.sety(y)    #stores new y coordinate
+    if y > -230:
+        y -= 20             #moves down by 20 pixels
+        r_paddle.sety(y)    #stores new y coordinate
 
 #keybindings
 wn.listen()
@@ -62,7 +66,7 @@ wn.onkeypress(r_paddle_down, "Down")
 #ball
 ball = turtle.Turtle()
 ball.speed(0)   #defaults to max speed
-ball.shape("square")
+ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
