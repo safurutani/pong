@@ -7,6 +7,10 @@ wn.bgcolor("#0D283D")
 wn.setup(width=800, height=600)
 wn.tracer(0)    #ensures manual updates for faster response
 
+#Scores for each player
+score1 = 0
+score2 = 0
+
 #L Paddle
 l_paddle = turtle.Turtle()
 l_paddle.speed(0)   #defaults to max speed
@@ -64,6 +68,14 @@ ball.goto(0,0)
 ball.dx = 0.25
 ball.dy = 0.25
 
+#pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "bold"))
 
 #main game loop
 while True:
@@ -73,19 +85,26 @@ while True:
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
 
-    #checks if ball hits border
+    #checks if ball hits top/bottom border
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
+    #checks if ball hits right/left border
     if ball.xcor() > 390:
         ball.goto(0,0)
         ball.dx *= -1
+        score1 += 1
+        pen.clear()
+        pen.write(f"Player 1: {score1}  Player 2: {score2}", align="center", font=("Courier", 24, "bold"))
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
+        score2 += 1
+        pen.clear()
+        pen.write(f"Player 1: {score1}  Player 2: {score2}", align="center", font=("Courier", 24, "bold"))
 
     #paddle/ball collisions
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < r_paddle.ycor() + 40 and ball.ycor() > r_paddle.ycor() -40):
