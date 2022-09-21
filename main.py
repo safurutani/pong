@@ -33,6 +33,35 @@ ball.color("white")
 ball.penup()
 ball.goto(0,0)
 
+#User moves L paddle up/down
+def l_paddle_up():
+    y = l_paddle.ycor()
+    y += 20             #moves up by 20 pixels
+    l_paddle.sety(y)    #stores new y coordinate
+
+def l_paddle_down():
+    y = l_paddle.ycor()
+    y -= 20             #moves up by 20 pixels
+    l_paddle.sety(y)    #stores new y coordinate
+
+#User moves R paddle up/down
+def r_paddle_up():
+    y = r_paddle.ycor()
+    y += 20             #moves up by 20 pixels
+    r_paddle.sety(y)    #stores new y coordinate
+
+def r_paddle_down():
+    y = r_paddle.ycor()
+    y -= 20             #moves up by 20 pixels
+    r_paddle.sety(y)    #stores new y coordinate
+
+#keybindings
+wn.listen()
+wn.onkeypress(l_paddle_up, "w")
+wn.onkeypress(l_paddle_down, "s")
+wn.onkeypress(r_paddle_up, "Up")
+wn.onkeypress(r_paddle_down, "Down")
+
 #main game loop
 while True:
     wn.update()
