@@ -1,5 +1,6 @@
 import turtle
 import winsound
+import random
 
 #initial window setup
 wn = turtle.Screen()
@@ -86,7 +87,19 @@ pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "bold
 while True:
     wn.update()
 
-    #moves ball
+    #indicates starting direction of ball randomly
+    if ball.xcor() == 0 and ball.ycor() == 0:
+        firstDirection = random.randint(0,3)
+        if firstDirection == 1:
+            ball.dx *= -1
+            ball.dy *= 1
+        elif firstDirection == 2:
+            ball.dx *= 1
+            ball.dy *= -1
+        elif firstDirection == 3:
+            ball.dx *= -1
+            ball.dy *= -1
+    #moves ball        
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
 
